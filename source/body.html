@@ -125,6 +125,18 @@ figure { margin: 0; }
 .faq details[open] summary::after { content: "−"; }
 .faq details p { margin-top: 10px; color: var(--muted); }
 
+/* Patient stories */
+.stories { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+@media (max-width: 640px) { .stories { grid-template-columns: 1fr; } }
+.story { background: var(--card); border: 1px solid var(--line); border-radius: 4px; padding: 22px; display: grid; gap: 16px; align-content: space-between; min-width: 0; }
+.story blockquote { margin: 0; font-family: var(--f-display); font-size: 1.375rem; line-height: 1.3; font-style: italic; text-wrap: pretty; }
+.story blockquote::before { content: "“"; color: var(--marker); }
+.story blockquote::after { content: "”"; color: var(--marker); }
+.story figcaption { display: grid; gap: 2px; padding-top: 12px; border-top: 1px dashed var(--marker); }
+.story figcaption b { font-weight: 600; font-size: 0.9375rem; }
+.story figcaption span { color: var(--muted); font-size: 0.8125rem; }
+.surgeon.lead h3 { color: var(--marker); }
+
 /* Procedures */
 .scars { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
 .scars figure { background: var(--card); border: 1px solid var(--line); border-radius: 4px; padding: 16px; }
@@ -335,6 +347,20 @@ form.card { background: var(--card); border: 1px solid var(--line); border-radiu
     </ol>
   </div>
 
+  <div>
+    <div class="section-head">
+      <span class="eyebrow">Patient stories</span>
+      <h2>In their words</h2>
+    </div>
+    <div class="stories">
+      <figure class="story"><blockquote>My chiropractor sent a sympathy card when I cancelled my standing appointment.</blockquote><figcaption><b>Danielle R., 34</b><span class="mono">Wise-pattern · 720 g / side</span></figcaption></figure>
+      <figure class="story"><blockquote>Dr. Voss guessed 860 grams at my consultation. It was 858. I still think about it.</blockquote><figcaption><b>Priya K., 29</b><span class="mono">Wise-pattern · 858 g / side</span></figcaption></figure>
+      <figure class="story"><blockquote>Dr. Shved phoned the night after surgery to check on me. I could hear his indicator ticking.</blockquote><figcaption><b>James L., 38</b><span class="mono">Male reduction · 310 g / side</span></figcaption></figure>
+      <figure class="story"><blockquote>I bought a shirt with buttons. I buttoned all of them. Then I sat down in it.</blockquote><figcaption><b>Alicia M., 46</b><span class="mono">Vertical · 540 g / side</span></figcaption></figure>
+    </div>
+    <p class="muted" style="margin-top:14px">Stories are fictional and written for this site, like the practice itself.</p>
+  </div>
+
   <div class="split" style="align-items:start">
     <div class="section-head" style="margin:0">
       <span class="eyebrow">Common questions</span>
@@ -425,29 +451,49 @@ form.card { background: var(--card); border: 1px solid var(--line); border-radiu
     <p class="lede">Every Ashgrove surgeon is certified by the American Board of Plastic Surgery and operates only on the breast. You meet your surgeon at consultation, and the same surgeon sees you at every follow-up.</p>
   </div>
   <div class="team">
+    <article class="surgeon lead">
+      <figure class="plate"><img src="img/surgeon.jpg" alt="Dr. Pavel Shved in a surgical cap, smiling" width="800" height="1000" loading="lazy"><figcaption>Photographed on call, 02:40</figcaption></figure>
+      <span class="creds">MD, FACS · Founder &amp; Lead Surgeon</span>
+      <h3>Dr. Pavel Shved</h3>
+      <p>Founded Ashgrove in 2012 and still operates four days a week, with a particular interest in male breast reduction and revision surgery. Holds the practice record of 211 consecutive symmetrical results and declines to discuss number 212. Takes on-call duty personally and reviews post-operative photographs from wherever he happens to be parked.</p>
+      <div class="count"><span>Reductions performed</span><span>3,140</span></div>
+    </article>
     <article class="surgeon">
       <div class="plate" aria-hidden="true"><span>HV</span></div>
-      <span class="creds">MD, FACS · Founder</span>
+      <span class="creds">MD, FACS · Large-volume reduction</span>
       <h3>Dr. Helena Voss</h3>
       <p>Trained in plastic surgery at UCLA and in breast reconstruction in Gothenburg. Leads Ashgrove's work on very large reductions and free nipple graft technique. Can estimate tissue weight by eye to within 15 grams and has asked staff to stop calling it a party trick.</p>
       <div class="count"><span>Reductions performed</span><span>2,460</span></div>
     </article>
     <article class="surgeon">
-      <figure class="plate"><img src="img/surgeon.jpg" alt="Dr. Marcus Hale in a surgical cap, smiling" width="800" height="1000" loading="lazy"><figcaption>Photographed on call, 02:40</figcaption></figure>
-      <span class="creds">MD, FACS · Chief of Surgery</span>
-      <h3>Dr. Marcus Hale</h3>
-      <p>Specialist in male breast reduction and revision surgery. Former assistant professor of plastic surgery; author of 14 peer-reviewed papers on scar outcomes. Holds the practice record of 211 consecutive symmetrical results and declines to discuss number 212.</p>
-      <div class="count"><span>Reductions performed</span><span>1,530</span></div>
-    </article>
-    <article class="surgeon">
       <div class="plate" aria-hidden="true"><span>IS</span></div>
-      <span class="creds">MD</span>
+      <span class="creds">MD · Short-scar technique</span>
       <h3>Dr. Ingrid Salo</h3>
       <p>Focuses on short-scar vertical technique and reduction in younger patients, including counselling on future breastfeeding. Joined Ashgrove in 2021. Keeps a laboratory-calibrated kitchen scale in her office and will not say why.</p>
       <div class="count"><span>Reductions performed</span><span>870</span></div>
     </article>
   </div>
-  <div class="note"><b>Our theatre</b><p class="muted">Surgery takes place in Ashgrove's own operating suite, accredited by AAAASF and staffed by board-certified anaesthesiologists. Patients needing an overnight stay recover in one of four private rooms with continuous nursing.</p></div>
+  <div class="split">
+    <figure class="illus">
+      <svg viewBox="0 0 400 260" role="img" aria-label="Line drawing of the Ashgrove operating theatre: twin surgical lights over the table, with a patient monitor">
+        <g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="10" y1="236" x2="390" y2="236"/>
+          <path d="M160 0v34M160 34l-20 22M250 0v26M250 26l14 20"/>
+          <circle cx="132" cy="72" r="26"/><circle cx="132" cy="72" r="14"/>
+          <circle cx="270" cy="62" r="22"/><circle cx="270" cy="62" r="11"/>
+          <rect x="100" y="164" width="190" height="14" rx="3"/>
+          <path d="M170 178l-12 58h76l-12-58"/>
+          <path d="M330 236V132"/><rect x="306" y="96" width="56" height="38" rx="3"/>
+          <path d="M318 236h24"/>
+        </g>
+        <path d="M104 164c20-14 60-18 92-14s64 2 90 14z" fill="var(--sage)" opacity="0.55"/>
+        <path d="M312 118h10l4-10 6 18 5-12h19" fill="none" stroke="var(--marker)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M60 250h280" stroke="var(--marker)" stroke-width="2" stroke-dasharray="8 6" fill="none"/>
+      </svg>
+      <figcaption>Theatre 1 · Larkspur Avenue</figcaption>
+    </figure>
+    <div class="note"><b>Our theatre</b><p class="muted">Surgery takes place in Ashgrove's own operating suite, accredited by AAAASF and staffed by board-certified anaesthesiologists. Patients needing an overnight stay recover in one of four private rooms with continuous nursing.</p></div>
+  </div>
 </section>
 
 <!-- RECOVERY -->
@@ -546,7 +592,7 @@ form.card { background: var(--card); border: 1px solid var(--line); border-radiu
               <option>Not sure yet</option><option>Wise-pattern reduction</option><option>Vertical reduction</option><option>Liposuction-only reduction</option><option>Male breast reduction</option><option>Revision reduction</option>
             </select></div>
           <div class="field"><label for="fSurg">Preferred surgeon</label>
-            <select id="fSurg" name="surgeon"><option>No preference</option><option>Dr. Helena Voss</option><option>Dr. Marcus Hale</option><option>Dr. Ingrid Salo</option></select></div>
+            <select id="fSurg" name="surgeon"><option>No preference</option><option>Dr. Pavel Shved</option><option>Dr. Helena Voss</option><option>Dr. Ingrid Salo</option></select></div>
           <fieldset class="field full" style="border:0;padding:0;margin:0"><legend style="font-size:.875rem;font-weight:500;margin-bottom:6px">Paying by</legend>
             <div class="radio-row"><label><input type="radio" name="pay" id="payIns" value="Insurance" checked> Insurance</label><label><input type="radio" name="pay" id="paySelf" value="Self-pay"> Self-pay</label><label><input type="radio" name="pay" id="payUnsure" value="Unsure"> Not sure</label></div>
           </fieldset>
@@ -584,7 +630,7 @@ form.card { background: var(--card); border: 1px solid var(--line); border-radiu
       <nav aria-label="Footer"><a href="#procedures">Procedures</a><a href="#surgeons">Surgeons</a><a href="#recovery">Recovery</a></nav>
       <nav aria-label="Footer, more"><a href="#pricing">Insurance &amp; pricing</a><a href="#contact">Contact</a><a href="#home">Home</a></nav>
     </div>
-    <p class="disclaimer">© <span id="yr">2026</span> Ashgrove Reduction Surgery. Ashgrove is a fictional practice; its surgeons, figures and address are invented, and nothing on this site is medical advice.</p>
+    <p class="disclaimer">© <span id="yr">2026</span> Ashgrove Reduction Surgery. Ashgrove is a fictional practice; its figures, address and patient stories are invented, and nothing on this site is medical advice.</p>
   </div>
 </footer>
 
