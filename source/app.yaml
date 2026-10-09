@@ -1,0 +1,14 @@
+# Optional: serve the same static site from Google App Engine (standard environment).
+# Firebase Hosting alone is enough for this site; use this only if you want App Engine.
+runtime: python312
+
+handlers:
+  - url: /favicon\.svg
+    static_files: public/favicon.svg
+    upload: public/favicon\.svg
+    secure: always
+
+  - url: /.*
+    static_files: public/index.html
+    upload: public/index\.html
+    secure: always

@@ -1,0 +1,661 @@
+<title>Ashgrove Reduction Surgery</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;0,6..96,600;1,6..96,400&family=IBM+Plex+Mono:wght@400;500&family=Public+Sans:wght@400;500;600&display=swap">
+<style>
+/* Layout: clinical editorial — left-aligned columns, gentian-violet "surgical marker" dashes as the one recurring flourish */
+:root {
+  --paper: #F5F6F8;
+  --card: #FFFFFF;
+  --ink: #1A2130;
+  --muted: #586174;
+  --line: #D8DCE4;
+  --marker: #5A3E9E;
+  --marker-soft: #EEE9F7;
+  --sage: #5F7F71;
+  --sage-soft: #E6EEEA;
+  --on-marker: #FFFFFF;
+  --f-display: "Bodoni Moda", "Didot", "Bodoni 72", Georgia, serif;
+  --f-body: "Public Sans", "Helvetica Neue", Arial, sans-serif;
+  --f-mono: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace;
+  --s-1: 0.8125rem; --s0: 1rem; --s1: 1.1875rem; --s2: 1.5rem; --s3: 2.125rem; --s4: clamp(2.5rem, 6vw, 4.25rem);
+  --wrap: 72rem;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #11141B; --card: #181C25; --ink: #E7E9EF; --muted: #9BA2B3; --line: #2A303C;
+    --marker: #AE92EE; --marker-soft: #241C38; --sage: #8DB2A1; --sage-soft: #18241F; --on-marker: #14101F;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --paper: #11141B; --card: #181C25; --ink: #E7E9EF; --muted: #9BA2B3; --line: #2A303C;
+  --marker: #AE92EE; --marker-soft: #241C38; --sage: #8DB2A1; --sage-soft: #18241F; --on-marker: #14101F;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { background: var(--paper); color: var(--ink); font-family: var(--f-body); font-size: var(--s0); line-height: 1.6; }
+.wrap { max-width: var(--wrap); margin-inline: auto; padding-inline: 20px; }
+h1, h2, h3 { font-family: var(--f-display); font-weight: 500; line-height: 1.1; text-wrap: balance; margin: 0; letter-spacing: -0.01em; }
+h1 { font-size: var(--s4); }
+h2 { font-size: var(--s3); }
+h3 { font-size: var(--s2); }
+p { margin: 0; max-width: 65ch; }
+a { color: inherit; }
+.eyebrow { font-family: var(--f-mono); font-size: var(--s-1); letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+.lede { font-size: var(--s1); color: var(--muted); }
+.mark { text-decoration: underline dashed var(--marker); text-decoration-thickness: 2px; text-underline-offset: 0.18em; }
+.mono { font-family: var(--f-mono); font-variant-numeric: tabular-nums; }
+:focus-visible { outline: 2px solid var(--marker); outline-offset: 3px; border-radius: 2px; }
+
+/* Header */
+.site-head { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 10; background: var(--paper); border-bottom: 1px solid var(--line); }
+.head-row { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-block: 14px; }
+.brand { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+.brand svg { width: 30px; height: 30px; color: var(--sage); flex: none; }
+.brand-name { font-family: var(--f-display); font-size: 1.25rem; font-weight: 600; line-height: 1; }
+.brand-sub { display: block; font-family: var(--f-mono); font-size: 0.6875rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin-top: 3px; }
+.nav { display: flex; gap: 4px; align-items: center; flex-wrap: wrap; }
+.nav a { text-decoration: none; padding: 8px 12px; border-radius: 6px; color: var(--muted); font-size: 0.9375rem; }
+.nav a:hover { color: var(--ink); }
+.nav a[aria-current="page"] { color: var(--ink); text-decoration: underline dashed var(--marker); text-decoration-thickness: 2px; text-underline-offset: 7px; }
+.nav a.btn { color: var(--on-marker); margin-left: 8px; }
+.menu-btn { display: none; }
+@media (max-width: 860px) {
+  .menu-btn { display: inline-flex; }
+  .nav { display: none; position: absolute; left: 0; right: 0; top: 100%; background: var(--paper); border-bottom: 1px solid var(--line); flex-direction: column; align-items: stretch; padding: 8px 20px 16px; }
+  .nav.open { display: flex; }
+  .nav a { padding: 12px 4px; border-bottom: 1px solid var(--line); border-radius: 0; }
+  .nav a.btn { margin: 12px 0 0; text-align: center; border-radius: 6px; border-bottom: 0; }
+}
+
+/* Buttons */
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; font: 500 0.9375rem var(--f-body); padding: 11px 18px; border-radius: 6px; border: 1px solid var(--marker); background: var(--marker); color: var(--on-marker); text-decoration: none; cursor: pointer; }
+.btn:hover { filter: brightness(1.08); }
+.btn.ghost { background: transparent; color: var(--ink); border-color: var(--line); }
+.btn.ghost:hover { border-color: var(--ink); filter: none; }
+
+/* Sections */
+main { padding-block: 0 64px; }
+.route { display: grid; gap: 72px; padding-top: 48px; }
+.section-head { display: grid; gap: 12px; margin-bottom: 28px; }
+
+/* Hero */
+.hero { display: grid; grid-template-columns: 1.35fr 1fr; gap: 48px; align-items: end; }
+.hero > div { min-width: 0; display: grid; gap: 20px; }
+.hero h1 em { font-style: italic; color: var(--marker); }
+.cta-row { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 8px; }
+.ledger { background: var(--card); border: 1px solid var(--line); border-radius: 4px; padding: 22px; display: grid; gap: 0; }
+.ledger-head { display: flex; justify-content: space-between; align-items: baseline; padding-bottom: 12px; border-bottom: 1px dashed var(--marker); margin-bottom: 4px; }
+.ledger dl { margin: 0; }
+.ledger .row { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; padding-block: 12px; border-bottom: 1px solid var(--line); }
+.ledger .row:last-child { border-bottom: 0; }
+.ledger dt { color: var(--muted); font-size: 0.9375rem; }
+.ledger dd { margin: 0; font-family: var(--f-mono); font-size: 1.125rem; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.ledger small { color: var(--muted); font-size: 0.75rem; }
+@media (max-width: 860px) { .hero { grid-template-columns: 1fr; gap: 32px; } }
+
+/* Symptoms + practice */
+.split { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; }
+.split > * { min-width: 0; }
+@media (max-width: 860px) { .split { grid-template-columns: 1fr; gap: 28px; } }
+.checklist { list-style: none; padding: 0; margin: 20px 0 0; display: grid; gap: 10px; }
+.checklist li { display: grid; grid-template-columns: 22px 1fr; gap: 10px; align-items: start; }
+.checklist li::before { content: ""; width: 14px; height: 14px; margin-top: 6px; border: 2px dashed var(--marker); border-radius: 50%; }
+.illus { background: var(--sage-soft); border-radius: 4px; padding: 20px; color: var(--ink); }
+.illus svg { display: block; width: 100%; height: auto; }
+.illus figcaption { font-family: var(--f-mono); font-size: 0.75rem; color: var(--muted); margin-top: 10px; letter-spacing: 0.04em; }
+figure { margin: 0; }
+
+/* Pathway (real sequence) */
+.pathway { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; border-top: 1px solid var(--line); }
+.pathway li { padding: 20px 20px 0 0; display: grid; gap: 8px; align-content: start; min-width: 0; }
+.pathway .num { font-family: var(--f-mono); color: var(--marker); font-size: var(--s-1); }
+.pathway h3 { font-size: 1.375rem; }
+.pathway p { color: var(--muted); font-size: 0.9375rem; }
+@media (max-width: 860px) { .pathway { grid-template-columns: 1fr 1fr; row-gap: 24px; } }
+@media (max-width: 520px) { .pathway { grid-template-columns: 1fr; } }
+
+/* FAQ */
+.faq { display: grid; border-top: 1px solid var(--line); }
+.faq details { border-bottom: 1px solid var(--line); padding-block: 16px; }
+.faq summary { cursor: pointer; font-weight: 500; font-size: 1.0625rem; list-style: none; display: flex; justify-content: space-between; gap: 16px; }
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary::after { content: "+"; font-family: var(--f-mono); color: var(--marker); }
+.faq details[open] summary::after { content: "−"; }
+.faq details p { margin-top: 10px; color: var(--muted); }
+
+/* Procedures */
+.scars { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+.scars figure { background: var(--card); border: 1px solid var(--line); border-radius: 4px; padding: 16px; }
+.scars svg { width: 100%; height: auto; display: block; }
+.scars figcaption { display: grid; gap: 2px; margin-top: 8px; }
+.scars figcaption b { font-weight: 600; }
+.scars figcaption span { color: var(--muted); font-size: 0.875rem; }
+@media (max-width: 640px) { .scars { grid-template-columns: 1fr; } }
+.proc-list { display: grid; border-top: 1px solid var(--ink); }
+.proc { display: grid; grid-template-columns: 1.2fr 1fr; gap: 32px; padding-block: 28px; border-bottom: 1px solid var(--line); }
+.proc > * { min-width: 0; }
+.proc-copy { display: grid; gap: 10px; align-content: start; }
+.proc-copy p { color: var(--muted); }
+.spec { margin: 0; display: grid; grid-template-columns: auto 1fr; column-gap: 20px; font-size: 0.9375rem; align-content: start; }
+.spec dt { color: var(--muted); padding-block: 7px; border-bottom: 1px solid var(--line); }
+.spec dd { margin: 0; padding-block: 7px; border-bottom: 1px solid var(--line); font-family: var(--f-mono); font-size: 0.875rem; text-align: right; font-variant-numeric: tabular-nums; }
+@media (max-width: 760px) { .proc { grid-template-columns: 1fr; gap: 16px; } }
+.tag { display: inline-block; font-family: var(--f-mono); font-size: 0.6875rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--marker); background: var(--marker-soft); padding: 3px 8px; border-radius: 3px; justify-self: start; }
+
+/* Surgeons */
+.team { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.surgeon { display: grid; gap: 14px; align-content: start; min-width: 0; }
+.plate { aspect-ratio: 4 / 5; max-width: 100%; border-radius: 4px; background: var(--sage-soft); display: grid; place-items: center; position: relative; overflow: hidden; }
+.plate span { font-family: var(--f-display); font-size: clamp(3.5rem, 9vw, 5.5rem); font-style: italic; color: var(--sage); }
+.plate img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.plate figcaption { position: absolute; left: 14px; right: 14px; bottom: 14px; z-index: 1; font-family: var(--f-mono); font-size: 0.6875rem; letter-spacing: 0.04em; color: #fff; background: rgba(20, 16, 31, 0.6); padding: 6px 8px; border-radius: 2px; }
+.plate::after { content: ""; position: absolute; inset: 14px; border: 1px dashed var(--sage); border-radius: 2px; opacity: 0.6; }
+.surgeon h3 { font-size: 1.5rem; }
+.creds { font-family: var(--f-mono); font-size: 0.75rem; color: var(--muted); letter-spacing: 0.03em; }
+.surgeon p { color: var(--muted); font-size: 0.9375rem; }
+.surgeon .count { font-family: var(--f-mono); font-size: 0.8125rem; border-top: 1px solid var(--line); padding-top: 10px; display: flex; justify-content: space-between; }
+@media (max-width: 860px) { .team { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 560px) { .team { grid-template-columns: 1fr; } }
+
+/* Recovery timeline */
+.timeline { list-style: none; margin: 0; padding: 0; display: grid; }
+.timeline li { display: grid; grid-template-columns: 9rem 1fr; gap: 24px; padding-block: 20px; border-bottom: 1px solid var(--line); position: relative; }
+.timeline li > * { min-width: 0; }
+.timeline .when { font-family: var(--f-mono); font-size: 0.875rem; color: var(--marker); padding-top: 4px; }
+.timeline h3 { font-size: 1.25rem; font-family: var(--f-body); font-weight: 600; margin-bottom: 4px; }
+.timeline p { color: var(--muted); }
+@media (max-width: 560px) { .timeline li { grid-template-columns: 1fr; gap: 6px; } }
+.note { background: var(--marker-soft); border-radius: 4px; padding: 18px 20px; display: grid; gap: 6px; }
+.note b { font-weight: 600; }
+
+/* Pricing */
+.table-wrap { overflow-x: auto; border: 1px solid var(--line); border-radius: 4px; background: var(--card); }
+table { border-collapse: collapse; width: 100%; min-width: 34rem; font-size: 0.9375rem; }
+th, td { text-align: left; padding: 14px 16px; border-bottom: 1px solid var(--line); vertical-align: top; }
+th { font-family: var(--f-mono); font-size: 0.75rem; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); }
+tr:last-child td { border-bottom: 0; }
+td.num { font-family: var(--f-mono); font-variant-numeric: tabular-nums; text-align: right; white-space: nowrap; }
+th.num { text-align: right; }
+td small { display: block; color: var(--muted); font-size: 0.8125rem; }
+.calc { background: var(--card); border: 1px solid var(--line); border-radius: 4px; padding: 24px; display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
+.calc > * { min-width: 0; }
+@media (max-width: 760px) { .calc { grid-template-columns: 1fr; } }
+.fields { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.field { display: grid; gap: 6px; min-width: 0; }
+.field.full { grid-column: 1 / -1; }
+label { font-size: 0.875rem; font-weight: 500; }
+input, select, textarea { font: inherit; color: var(--ink); background: var(--paper); border: 1px solid var(--line); border-radius: 4px; padding: 10px 12px; width: 100%; min-width: 0; }
+input:focus, select:focus, textarea:focus { outline: 2px solid var(--marker); outline-offset: 0; border-color: var(--marker); }
+textarea { min-height: 7rem; resize: vertical; }
+.result { display: grid; gap: 14px; align-content: start; }
+.big { font-family: var(--f-display); font-size: 3rem; line-height: 1; }
+.big small { font-family: var(--f-mono); font-size: 1rem; color: var(--muted); margin-left: 6px; }
+.gauge { height: 10px; border-radius: 5px; background: var(--line); position: relative; overflow: hidden; }
+.gauge i { position: absolute; inset: 0 auto 0 0; background: repeating-linear-gradient(90deg, var(--marker) 0 10px, transparent 10px 14px); border-radius: 5px; transition: width .3s; }
+.muted { color: var(--muted); font-size: 0.875rem; }
+
+/* Contact */
+.contact { display: grid; grid-template-columns: 1.3fr 1fr; gap: 48px; align-items: start; }
+.contact > * { min-width: 0; }
+@media (max-width: 860px) { .contact { grid-template-columns: 1fr; } }
+form.card { background: var(--card); border: 1px solid var(--line); border-radius: 4px; padding: 24px; display: grid; gap: 16px; }
+.check { display: grid; grid-template-columns: auto 1fr; gap: 10px; align-items: start; font-size: 0.875rem; color: var(--muted); font-weight: 400; }
+.check input { width: 18px; height: 18px; margin-top: 2px; accent-color: var(--marker); }
+.radio-row { display: flex; gap: 16px; flex-wrap: wrap; }
+.radio-row label { display: flex; gap: 6px; align-items: center; font-weight: 400; }
+.radio-row input { width: auto; accent-color: var(--marker); }
+.success { background: var(--sage-soft); border-radius: 4px; padding: 20px; display: grid; gap: 6px; }
+.err { color: #B3261E; font-size: 0.8125rem; }
+:root[data-theme="dark"] .err { color: #F2B8B5; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .err { color: #F2B8B5; } }
+.details { display: grid; gap: 24px; }
+.details h3 { font-size: 1.125rem; font-family: var(--f-body); font-weight: 600; margin-bottom: 6px; }
+.details address { font-style: normal; color: var(--muted); }
+.copyline { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+.copyline .mono { font-size: 1rem; color: var(--ink); }
+.copy { font: 500 0.75rem var(--f-mono); padding: 4px 8px; border-radius: 3px; border: 1px solid var(--line); background: transparent; color: var(--muted); cursor: pointer; }
+.hours { margin: 0; display: grid; grid-template-columns: auto 1fr; column-gap: 16px; font-size: 0.9375rem; }
+.hours dt { color: var(--muted); padding-block: 4px; }
+.hours dd { margin: 0; padding-block: 4px; text-align: right; font-family: var(--f-mono); font-size: 0.875rem; }
+
+/* Footer */
+.site-foot { border-top: 1px solid var(--line); padding-block: 36px 48px; color: var(--muted); font-size: 0.875rem; }
+.foot-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 32px; }
+.foot-grid > * { min-width: 0; }
+.foot-grid nav { display: grid; gap: 6px; }
+.foot-grid nav a { text-decoration: none; }
+.foot-grid nav a:hover { color: var(--ink); }
+.disclaimer { margin-top: 28px; padding-top: 16px; border-top: 1px dashed var(--line); font-size: 0.75rem; }
+@media (max-width: 760px) { .foot-grid { grid-template-columns: 1fr 1fr; } .foot-grid > :first-child { grid-column: 1 / -1; } }
+
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="leaf" viewBox="0 0 32 32">
+    <path d="M16 30V4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+    <path d="M16 6c-3 1-5 3.5-5 6 3 0 5-2 5-6zM16 6c3 1 5 3.5 5 6-3 0-5-2-5-6zM16 13c-3.6 1-6 3.8-6 6.6 3.4 0 6-2.4 6-6.6zM16 13c3.6 1 6 3.8 6 6.6-3.4 0-6-2.4-6-6.6zM16 20.5c-3 .8-5 3-5 5.4 2.8 0 5-1.9 5-5.4zM16 20.5c3 .8 5 3 5 5.4-2.8 0-5-1.9-5-5.4z" fill="currentColor"/>
+  </symbol>
+</svg>
+
+<header class="site-head">
+  <div class="wrap head-row">
+    <a class="brand" href="#home" aria-label="Ashgrove Reduction Surgery, home">
+      <svg aria-hidden="true"><use href="#leaf"/></svg>
+      <span><span class="brand-name">Ashgrove</span><span class="brand-sub">Reduction Surgery</span></span>
+    </a>
+    <button class="btn ghost menu-btn" id="menuBtn" aria-expanded="false" aria-controls="nav">Menu</button>
+    <nav class="nav" id="nav" aria-label="Main">
+      <a href="#procedures">Procedures</a>
+      <a href="#surgeons">Surgeons</a>
+      <a href="#recovery">Recovery</a>
+      <a href="#pricing">Insurance &amp; pricing</a>
+      <a href="#contact">Contact</a>
+      <a class="btn" href="#contact">Book a consultation</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+
+<!-- HOME -->
+<section class="route" data-route="home" aria-label="Home">
+  <div class="hero">
+    <div>
+      <span class="eyebrow">Reduction mammaplasty · Pasadena, California</span>
+      <h1>Relief you can measure <em>in grams.</em></h1>
+      <p class="lede">Ashgrove is a surgical practice devoted to one operation. Our three board-certified plastic surgeons perform breast reduction for women and men whose chest size causes pain, restricts movement, or simply no longer fits the life they lead.</p>
+      <div class="cta-row">
+        <a class="btn" href="#contact">Book a consultation</a>
+        <a class="btn ghost" href="#procedures">Compare techniques</a>
+      </div>
+    </div>
+    <aside class="ledger" aria-label="Practice figures for 2025">
+      <div class="ledger-head"><span class="eyebrow">Case ledger</span><span class="mono muted">Jan–Dec 2025</span></div>
+      <dl>
+        <div class="row"><dt>Reductions performed</dt><dd>1,184</dd></div>
+        <div class="row"><dt>Median tissue removed, per side</dt><dd>640 g</dd></div>
+        <div class="row"><dt>Insurance pre-authorisations approved</dt><dd>93.8%</dd></div>
+        <div class="row"><dt>Home the same day</dt><dd>88%</dd></div>
+        <div class="row"><dt>Revision rate at 12 months</dt><dd>2.1%</dd></div>
+        <div class="row"><dt>Total removed since 2012<br><small>About one family hatchback</small></dt><dd>1.4 t</dd></div>
+      </dl>
+    </aside>
+  </div>
+
+  <div class="split">
+    <div>
+      <span class="eyebrow">Who we treat</span>
+      <h2 style="margin-top:10px">Macromastia is a medical condition, and we treat it like one.</h2>
+      <ul class="checklist">
+        <li>Chronic neck, upper-back or shoulder pain</li>
+        <li>Deep grooves where bra straps sit</li>
+        <li>Rashes or skin breakdown beneath the breast fold</li>
+        <li>Numbness or tingling in the hands</li>
+        <li>Difficulty running, swimming or sleeping comfortably</li>
+        <li>Gynecomastia in men that has not resolved on its own</li>
+      </ul>
+    </div>
+    <figure class="illus">
+      <svg viewBox="0 0 400 280" role="img" aria-label="Line drawing of the Ashgrove consultation suite: tall window, armchair and a potted ash sapling">
+        <g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="10" y1="240" x2="390" y2="240"/>
+          <rect x="40" y="30" width="130" height="190" rx="65" ry="65"/>
+          <path d="M40 95h130M105 30v190M40 160h130"/>
+          <path d="M210 240v-22M330 240v-22"/>
+          <path d="M200 218h140c8 0 12-6 12-14v-36c0-8-6-12-12-12h-6v38H206v-38h-6c-6 0-12 4-12 12v36c0 8 4 14 12 14z"/>
+          <path d="M206 194v-58c0-12 8-20 20-20h88c12 0 20 8 20 20v58"/>
+          <path d="M360 240l-6-38h28l-6 38z"/>
+          <path d="M368 202V120"/>
+        </g>
+        <g fill="var(--sage)">
+          <ellipse cx="358" cy="130" rx="10" ry="4" transform="rotate(-30 358 130)"/><ellipse cx="378" cy="130" rx="10" ry="4" transform="rotate(30 378 130)"/>
+          <ellipse cx="356" cy="150" rx="11" ry="4" transform="rotate(-30 356 150)"/><ellipse cx="380" cy="150" rx="11" ry="4" transform="rotate(30 380 150)"/>
+          <ellipse cx="356" cy="170" rx="11" ry="4" transform="rotate(-30 356 170)"/><ellipse cx="380" cy="170" rx="11" ry="4" transform="rotate(30 380 170)"/>
+          <ellipse cx="368" cy="114" rx="4" ry="9"/>
+        </g>
+        <path d="M60 255h280" stroke="var(--marker)" stroke-width="2" stroke-dasharray="8 6" fill="none"/>
+      </svg>
+      <figcaption>Consultation suite 2 · Larkspur Avenue</figcaption>
+    </figure>
+  </div>
+
+  <div>
+    <div class="section-head">
+      <span class="eyebrow">Your pathway</span>
+      <h2>From first appointment to final follow-up</h2>
+    </div>
+    <ol class="pathway">
+      <li><span class="num">01 · Week 0</span><h3>Consultation</h3><p>A 60-minute visit with your surgeon. We measure, photograph and discuss technique, scars and the size you want to be.</p></li>
+      <li><span class="num">02 · Weeks 1–6</span><h3>Pre-authorisation</h3><p>Our insurance coordinator assembles your records and submits them. Self-pay patients skip this step.</p></li>
+      <li><span class="num">03 · Surgery day</span><h3>Operation</h3><p>Two to four hours under general anaesthesia in our accredited theatre. Most patients go home that evening.</p></li>
+      <li><span class="num">04 · 12 months</span><h3>Follow-up</h3><p>Six scheduled visits over a year, scar care included. Your surgeon sees you every time.</p></li>
+    </ol>
+  </div>
+
+  <div class="split" style="align-items:start">
+    <div class="section-head" style="margin:0">
+      <span class="eyebrow">Common questions</span>
+      <h2>Before you call</h2>
+      <p class="muted">Anything else, our patient coordinators answer the phone in person from 8:00 to 17:30.</p>
+    </div>
+    <div class="faq">
+      <details><summary>Will insurance cover my reduction?</summary><p>Often, yes. Most plans cover reduction when symptoms are documented and the planned tissue removal meets the insurer's minimum. Our <a href="#pricing">pre-authorisation estimator</a> gives a first indication.</p></details>
+      <details><summary>Can I still breastfeed afterwards?</summary><p>Many patients can. Pedicle techniques keep the nipple attached to its underlying tissue, which preserves ducts in most cases. Your surgeon will explain the odds for the technique planned for you.</p></details>
+      <details><summary>How visible are the scars?</summary><p>Scars depend on technique. They are pink for several months and usually fade to fine pale lines by the end of the first year.</p></details>
+      <details><summary>How long until I can go back to work?</summary><p>Most desk-based patients return after 10 to 14 days. Physically demanding jobs need four to six weeks.</p></details>
+      <details><summary>Can I keep what you remove?</summary><p>No. We are asked this about once a week, and the answer has not changed since 2012.</p></details>
+    </div>
+  </div>
+</section>
+
+<!-- PROCEDURES -->
+<section class="route" data-route="procedures" aria-label="Procedures" hidden>
+  <div class="section-head">
+    <span class="eyebrow">Procedures</span>
+    <h1>Six techniques. One recommended for you.</h1>
+    <p class="lede">The right operation depends on how much tissue is removed, the quality of your skin, and where you are willing to accept a scar. These are the incision patterns we use most.</p>
+  </div>
+
+  <div class="scars" aria-label="Incision patterns">
+    <figure>
+      <svg viewBox="0 0 160 130" role="img" aria-label="Diagram: liposuction-only, two small port sites">
+        <path d="M28 20c0 58 26 92 52 92s52-34 52-92" fill="none" stroke="var(--muted)" stroke-width="1.5"/>
+        <circle cx="80" cy="72" r="11" fill="none" stroke="var(--muted)" stroke-width="1.5"/>
+        <path d="M44 104l6 4M116 104l-6 4" stroke="var(--marker)" stroke-width="3" stroke-linecap="round"/>
+      </svg>
+      <figcaption><b>Port sites only</b><span>Liposuction reduction</span></figcaption>
+    </figure>
+    <figure>
+      <svg viewBox="0 0 160 130" role="img" aria-label="Diagram: vertical pattern, around the areola and straight down">
+        <path d="M28 20c0 58 26 92 52 92s52-34 52-92" fill="none" stroke="var(--muted)" stroke-width="1.5"/>
+        <circle cx="80" cy="72" r="11" fill="none" stroke="var(--muted)" stroke-width="1.5"/>
+        <circle cx="80" cy="72" r="15" fill="none" stroke="var(--marker)" stroke-width="2.5" stroke-dasharray="5 4"/>
+        <path d="M80 87v24" stroke="var(--marker)" stroke-width="2.5" stroke-dasharray="5 4"/>
+      </svg>
+      <figcaption><b>Vertical, “lollipop”</b><span>Short-scar reduction</span></figcaption>
+    </figure>
+    <figure>
+      <svg viewBox="0 0 160 130" role="img" aria-label="Diagram: Wise pattern, around the areola, down, and along the fold">
+        <path d="M28 20c0 58 26 92 52 92s52-34 52-92" fill="none" stroke="var(--muted)" stroke-width="1.5"/>
+        <circle cx="80" cy="72" r="11" fill="none" stroke="var(--muted)" stroke-width="1.5"/>
+        <circle cx="80" cy="72" r="15" fill="none" stroke="var(--marker)" stroke-width="2.5" stroke-dasharray="5 4"/>
+        <path d="M80 87v24M44 103c14 10 58 10 72 0" fill="none" stroke="var(--marker)" stroke-width="2.5" stroke-dasharray="5 4"/>
+      </svg>
+      <figcaption><b>Wise pattern, “anchor”</b><span>Inverted-T reduction</span></figcaption>
+    </figure>
+  </div>
+
+  <div class="proc-list">
+    <article class="proc">
+      <div class="proc-copy"><span class="tag">Most performed</span><h3>Wise-pattern reduction</h3><p>The workhorse for large reductions. Removing skin both vertically and horizontally lets your surgeon reshape a heavy, low breast with precise control over the final size and nipple position.</p></div>
+      <dl class="spec"><dt>Typical removal</dt><dd>500–1,500 g / side</dd><dt>Operating time</dt><dd>3–4 h</dd><dt>Anaesthesia</dt><dd>General</dd><dt>Overnight stay</dt><dd>Occasionally</dd><dt>Desk work</dt><dd>14 days</dd></dl>
+    </article>
+    <article class="proc">
+      <div class="proc-copy"><h3>Vertical (short-scar) reduction</h3><p>Avoids the horizontal scar in the breast fold. Suited to moderate reductions where the skin still has good elasticity. The shape settles over eight to twelve weeks.</p></div>
+      <dl class="spec"><dt>Typical removal</dt><dd>250–800 g / side</dd><dt>Operating time</dt><dd>2.5–3 h</dd><dt>Anaesthesia</dt><dd>General</dd><dt>Overnight stay</dt><dd>Rarely</dd><dt>Desk work</dt><dd>10–14 days</dd></dl>
+    </article>
+    <article class="proc">
+      <div class="proc-copy"><h3>Liposuction-only reduction</h3><p>For breasts composed mostly of fatty tissue with little sagging. Two four-millimetre incisions, a faster recovery, and a modest change in size.</p></div>
+      <dl class="spec"><dt>Typical removal</dt><dd>150–500 g / side</dd><dt>Operating time</dt><dd>1.5 h</dd><dt>Anaesthesia</dt><dd>General or sedation</dd><dt>Overnight stay</dt><dd>No</dd><dt>Desk work</dt><dd>5–7 days</dd></dl>
+    </article>
+    <article class="proc">
+      <div class="proc-copy"><span class="tag">For men</span><h3>Male breast reduction</h3><p>Treatment for gynecomastia combining liposuction with excision of firm glandular tissue through a small incision at the lower edge of the areola.</p></div>
+      <dl class="spec"><dt>Typical removal</dt><dd>100–400 g / side</dd><dt>Operating time</dt><dd>1.5–2 h</dd><dt>Anaesthesia</dt><dd>General</dd><dt>Overnight stay</dt><dd>No</dd><dt>Desk work</dt><dd>5–7 days</dd></dl>
+    </article>
+    <article class="proc">
+      <div class="proc-copy"><h3>Free nipple graft reduction</h3><p>Reserved for very large reductions where keeping the nipple on a long pedicle would risk its blood supply. The nipple is removed and replaced as a skin graft.</p></div>
+      <dl class="spec"><dt>Typical removal</dt><dd>1,500 g+ / side</dd><dt>Operating time</dt><dd>3.5–4.5 h</dd><dt>Anaesthesia</dt><dd>General</dd><dt>Overnight stay</dt><dd>Usually</dd><dt>Desk work</dt><dd>21 days</dd></dl>
+    </article>
+    <article class="proc">
+      <div class="proc-copy"><h3>Revision reduction</h3><p>Correction of asymmetry, residual volume or unsatisfactory scarring after a previous reduction, including operations performed elsewhere.</p></div>
+      <dl class="spec"><dt>Typical removal</dt><dd>Case-specific</dd><dt>Operating time</dt><dd>1.5–3 h</dd><dt>Anaesthesia</dt><dd>General</dd><dt>Overnight stay</dt><dd>Rarely</dd><dt>Desk work</dt><dd>7–14 days</dd></dl>
+    </article>
+  </div>
+  <p class="muted">Ranges are per breast and describe typical Ashgrove cases. Your surgeon will give you a personal estimate at consultation.</p>
+</section>
+
+<!-- SURGEONS -->
+<section class="route" data-route="surgeons" aria-label="Surgeons" hidden>
+  <div class="section-head">
+    <span class="eyebrow">Surgeons</span>
+    <h1>Three surgeons. One operation, thousands of times.</h1>
+    <p class="lede">Every Ashgrove surgeon is certified by the American Board of Plastic Surgery and operates only on the breast. You meet your surgeon at consultation, and the same surgeon sees you at every follow-up.</p>
+  </div>
+  <div class="team">
+    <article class="surgeon">
+      <div class="plate" aria-hidden="true"><span>HV</span></div>
+      <span class="creds">MD, FACS · Founder</span>
+      <h3>Dr. Helena Voss</h3>
+      <p>Trained in plastic surgery at UCLA and in breast reconstruction in Gothenburg. Leads Ashgrove's work on very large reductions and free nipple graft technique. Can estimate tissue weight by eye to within 15 grams and has asked staff to stop calling it a party trick.</p>
+      <div class="count"><span>Reductions performed</span><span>2,460</span></div>
+    </article>
+    <article class="surgeon">
+      <figure class="plate"><img src="img/surgeon.jpg" alt="Dr. Marcus Hale in a surgical cap, smiling" width="800" height="1000" loading="lazy"><figcaption>Photographed on call, 02:40</figcaption></figure>
+      <span class="creds">MD, FACS · Chief of Surgery</span>
+      <h3>Dr. Marcus Hale</h3>
+      <p>Specialist in male breast reduction and revision surgery. Former assistant professor of plastic surgery; author of 14 peer-reviewed papers on scar outcomes. Holds the practice record of 211 consecutive symmetrical results and declines to discuss number 212.</p>
+      <div class="count"><span>Reductions performed</span><span>1,530</span></div>
+    </article>
+    <article class="surgeon">
+      <div class="plate" aria-hidden="true"><span>IS</span></div>
+      <span class="creds">MD</span>
+      <h3>Dr. Ingrid Salo</h3>
+      <p>Focuses on short-scar vertical technique and reduction in younger patients, including counselling on future breastfeeding. Joined Ashgrove in 2021. Keeps a laboratory-calibrated kitchen scale in her office and will not say why.</p>
+      <div class="count"><span>Reductions performed</span><span>870</span></div>
+    </article>
+  </div>
+  <div class="note"><b>Our theatre</b><p class="muted">Surgery takes place in Ashgrove's own operating suite, accredited by AAAASF and staffed by board-certified anaesthesiologists. Patients needing an overnight stay recover in one of four private rooms with continuous nursing.</p></div>
+</section>
+
+<!-- RECOVERY -->
+<section class="route" data-route="recovery" aria-label="Recovery" hidden>
+  <div class="section-head">
+    <span class="eyebrow">Recovery</span>
+    <h1>What the first year looks like</h1>
+    <p class="lede">Recovery is gradual and predictable. This is the schedule most Ashgrove patients follow after a Wise-pattern or vertical reduction.</p>
+  </div>
+  <ol class="timeline">
+    <li><span class="when">Day 0</span><div><h3>Home the same evening</h3><p>You wake in a soft surgical bra with dressings. A responsible adult drives you home and stays the first night.</p></div></li>
+    <li><span class="when">Days 1–3</span><div><h3>Rest and short walks</h3><p>Discomfort is usually controlled with paracetamol and a short course of stronger medication. Walking every few hours reduces the risk of clots.</p></div></li>
+    <li><span class="when">Day 7</span><div><h3>First review</h3><p>Dressings are changed and any drains removed. Most patients notice that their back and neck already feel different.</p></div></li>
+    <li><span class="when">Weeks 2–3</span><div><h3>Back to desk work</h3><p>You can drive once you can turn and brake without hesitation. Showering normally is allowed from day 10.</p></div></li>
+    <li><span class="when">Weeks 4–6</span><div><h3>Exercise resumes</h3><p>Lower-body training and brisk walking first, then running and upper-body work from week six. Support garment day and night until then.</p></div></li>
+    <li><span class="when">Month 3</span><div><h3>Final shape</h3><p>Swelling has settled. This is the right time to be measured for new bras, and to dispose of the old ones with whatever ceremony you feel they deserve.</p></div></li>
+    <li><span class="when">Month 12</span><div><h3>Scars mature</h3><p>Scars soften and fade from pink to pale. Your final review includes standardised photographs compared with your first visit.</p></div></li>
+  </ol>
+  <div class="note"><b>When to call us straight away</b><p class="muted">Fever above 38 °C, one breast suddenly larger or more painful than the other, a darkening nipple, or calf pain or breathlessness. Our on-call surgeon is reachable 24 hours a day on the post-operative line given to you at discharge.</p></div>
+</section>
+
+<!-- PRICING -->
+<section class="route" data-route="pricing" aria-label="Insurance and pricing" hidden>
+  <div class="section-head">
+    <span class="eyebrow">Insurance &amp; pricing</span>
+    <h1>One price, written down, before you decide</h1>
+    <p class="lede">Self-pay patients receive an all-inclusive quote at consultation. For insured patients, our coordinator handles pre-authorisation from start to finish.</p>
+  </div>
+
+  <div>
+    <h2 style="font-size:var(--s2);margin-bottom:16px">Self-pay packages</h2>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Procedure</th><th>Includes</th><th class="num">From</th></tr></thead>
+        <tbody>
+          <tr><td>Wise-pattern reduction</td><td>Surgeon, anaesthesia, facility, two garments, 12 months of follow-up<small>Overnight stay, if needed, at no extra cost</small></td><td class="num">$12,900</td></tr>
+          <tr><td>Vertical reduction</td><td>Surgeon, anaesthesia, facility, two garments, 12 months of follow-up</td><td class="num">$11,400</td></tr>
+          <tr><td>Liposuction-only reduction</td><td>Surgeon, anaesthesia, facility, one garment, 6 months of follow-up</td><td class="num">$7,800</td></tr>
+          <tr><td>Male breast reduction</td><td>Surgeon, anaesthesia, facility, compression vest, 6 months of follow-up</td><td class="num">$8,600</td></tr>
+          <tr><td>Consultation</td><td>60 minutes with your surgeon, credited against surgery</td><td class="num">$250</td></tr>
+          <tr><td>Old bra disposal</td><td>Supervised burning in the courtyard, Fridays at 15:00<small>Marshmallows provided</small></td><td class="num">Included</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="split" style="align-items:start">
+    <div>
+      <h2 style="font-size:var(--s2)">What insurers usually ask for</h2>
+      <ul class="checklist">
+        <li>Symptoms documented by your physician for at least six months</li>
+        <li>Six to twelve weeks of conservative treatment, such as physical therapy or a supportive bra fitting</li>
+        <li>Photographs taken at consultation</li>
+        <li>A planned removal that meets the insurer's minimum for your body size</li>
+      </ul>
+    </div>
+    <div class="note" style="align-self:center"><b>About the minimum</b><p class="muted">Many insurers set the minimum with the Schnur sliding scale, which links grams removed per breast to your body surface area. Larger frames require more tissue removed to qualify.</p></div>
+  </div>
+
+  <div>
+    <h2 style="font-size:var(--s2);margin-bottom:16px">Pre-authorisation estimator</h2>
+    <div class="calc">
+      <div class="fields">
+        <div class="field"><label for="hFt">Height, feet</label><input id="hFt" type="number" min="4" max="7" value="5" inputmode="numeric"></div>
+        <div class="field"><label for="hIn">Inches</label><input id="hIn" type="number" min="0" max="11" value="5" inputmode="numeric"></div>
+        <div class="field full"><label for="wLb">Weight, pounds</label><input id="wLb" type="number" min="80" max="450" value="165" inputmode="numeric"></div>
+        <p class="muted field full">Calculated with the Mosteller body-surface-area formula. Nothing you enter leaves this page, which is more than we can say for the tissue.</p>
+      </div>
+      <div class="result" aria-live="polite">
+        <span class="eyebrow">Estimated Schnur minimum</span>
+        <div class="big" id="grams">—<small>g per breast</small></div>
+        <div class="gauge" aria-hidden="true"><i id="gauge" style="width:0"></i></div>
+        <p class="muted mono" id="bsa">Body surface area —</p>
+        <p class="muted">An estimate only. Your insurer's own criteria decide coverage; our coordinator confirms them before surgery is booked.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="route" data-route="contact" aria-label="Contact" hidden>
+  <div class="section-head">
+    <span class="eyebrow">Contact</span>
+    <h1>Book a consultation</h1>
+    <p class="lede">Send your details and a patient coordinator will call within one working day to find a time with the surgeon of your choice.</p>
+  </div>
+  <div class="contact">
+    <div>
+      <form class="card" id="bookForm" novalidate>
+        <div class="fields">
+          <div class="field"><label for="fName">Full name</label><input id="fName" name="name" autocomplete="name" required></div>
+          <div class="field"><label for="fPhone">Phone</label><input id="fPhone" name="phone" type="tel" autocomplete="tel"></div>
+          <div class="field full"><label for="fEmail">Email</label><input id="fEmail" name="email" type="email" autocomplete="email" required></div>
+          <div class="field"><label for="fProc">Procedure of interest</label>
+            <select id="fProc" name="procedure">
+              <option>Not sure yet</option><option>Wise-pattern reduction</option><option>Vertical reduction</option><option>Liposuction-only reduction</option><option>Male breast reduction</option><option>Revision reduction</option>
+            </select></div>
+          <div class="field"><label for="fSurg">Preferred surgeon</label>
+            <select id="fSurg" name="surgeon"><option>No preference</option><option>Dr. Helena Voss</option><option>Dr. Marcus Hale</option><option>Dr. Ingrid Salo</option></select></div>
+          <fieldset class="field full" style="border:0;padding:0;margin:0"><legend style="font-size:.875rem;font-weight:500;margin-bottom:6px">Paying by</legend>
+            <div class="radio-row"><label><input type="radio" name="pay" id="payIns" value="Insurance" checked> Insurance</label><label><input type="radio" name="pay" id="paySelf" value="Self-pay"> Self-pay</label><label><input type="radio" name="pay" id="payUnsure" value="Unsure"> Not sure</label></div>
+          </fieldset>
+          <div class="field full"><label for="fMsg">Anything we should know</label><textarea id="fMsg" name="message" placeholder="Symptoms, previous surgery, times that suit you"></textarea></div>
+          <label class="check field full" for="fConsent"><input id="fConsent" type="checkbox" required> I agree to Ashgrove contacting me about my enquiry. I understand this form is not for urgent medical problems.</label>
+        </div>
+        <p class="err" id="formErr" hidden></p>
+        <button class="btn" type="submit" style="justify-self:start">Request a consultation</button>
+      </form>
+      <div class="success" id="formOk" hidden><b>Request received</b><p class="muted" id="okText"></p></div>
+    </div>
+    <div class="details">
+      <div><h3>Clinic</h3><address>Ashgrove Reduction Surgery<br>2140 Larkspur Avenue, Suite 300<br>Pasadena, CA 91101</address></div>
+      <div><h3>Patient coordinators</h3>
+        <div class="copyline"><span class="mono" id="phoneTxt">(626) 555-0148</span><button class="copy" data-copy="phoneTxt" type="button">Copy</button></div>
+        <div class="copyline"><span class="mono" id="mailTxt">consult@ashgrove.example</span><button class="copy" data-copy="mailTxt" type="button">Copy</button></div>
+      </div>
+      <div><h3>Hours</h3>
+        <dl class="hours"><dt>Mon–Thu</dt><dd>08:00–17:30</dd><dt>Friday</dt><dd>08:00–15:00</dd><dt>Saturday</dt><dd>Post-op reviews only</dd><dt>Sunday</dt><dd>Closed</dd></dl>
+      </div>
+      <div><h3>Getting here</h3><p class="muted">Two blocks from Lake station on the Metro A Line. Validated parking in the building garage on Larkspur Avenue.</p></div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="site-foot">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <a class="brand" href="#home"><svg aria-hidden="true"><use href="#leaf"/></svg><span><span class="brand-name">Ashgrove</span><span class="brand-sub">Reduction Surgery</span></span></a>
+        <p style="margin-top:12px">Taking the weight off your shoulders. Pasadena, California, since 2012.</p>
+      </div>
+      <nav aria-label="Footer"><a href="#procedures">Procedures</a><a href="#surgeons">Surgeons</a><a href="#recovery">Recovery</a></nav>
+      <nav aria-label="Footer, more"><a href="#pricing">Insurance &amp; pricing</a><a href="#contact">Contact</a><a href="#home">Home</a></nav>
+    </div>
+    <p class="disclaimer">© <span id="yr">2026</span> Ashgrove Reduction Surgery. Ashgrove is a fictional practice; its surgeons, figures and address are invented, and nothing on this site is medical advice.</p>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var routes = ["home", "procedures", "surgeons", "recovery", "pricing", "contact"];
+  var nav = document.getElementById("nav");
+  var menuBtn = document.getElementById("menuBtn");
+
+  function show() {
+    var r = (location.hash || "#home").slice(1);
+    if (routes.indexOf(r) < 0) r = "home";
+    document.querySelectorAll(".route").forEach(function (s) { s.hidden = s.dataset.route !== r; });
+    nav.querySelectorAll("a:not(.btn)").forEach(function (a) {
+      if (a.getAttribute("href") === "#" + r) a.setAttribute("aria-current", "page"); else a.removeAttribute("aria-current");
+    });
+    nav.classList.remove("open"); menuBtn.setAttribute("aria-expanded", "false");
+    window.scrollTo(0, 0);
+  }
+  window.addEventListener("hashchange", show);
+  show();
+
+  menuBtn.addEventListener("click", function () {
+    var open = nav.classList.toggle("open");
+    menuBtn.setAttribute("aria-expanded", String(open));
+  });
+
+  // Schnur sliding scale: fitted curve through the published table (1.35 m² → 199 g … 2.55 m² → 1,662 g)
+  function calc() {
+    var ft = +document.getElementById("hFt").value || 0;
+    var inch = +document.getElementById("hIn").value || 0;
+    var lb = +document.getElementById("wLb").value || 0;
+    var cm = (ft * 12 + inch) * 2.54, kg = lb * 0.4536;
+    var g = document.getElementById("grams"), b = document.getElementById("bsa"), gauge = document.getElementById("gauge");
+    if (cm < 120 || kg < 35) { g.innerHTML = "—<small>g per breast</small>"; b.textContent = "Enter height and weight"; gauge.style.width = "0"; return; }
+    var bsa = Math.sqrt(cm * kg / 3600);
+    var grams = Math.round(199 * Math.exp(1.768 * (bsa - 1.35)));
+    if (bsa < 1.35) grams = 199;
+    g.innerHTML = grams.toLocaleString("en-US") + "<small>g per breast</small>";
+    b.textContent = "Body surface area " + bsa.toFixed(2) + " m²";
+    gauge.style.width = Math.min(100, grams / 1700 * 100) + "%";
+  }
+  ["hFt", "hIn", "wLb"].forEach(function (id) { document.getElementById(id).addEventListener("input", calc); });
+  calc();
+
+  var form = document.getElementById("bookForm");
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+    var err = document.getElementById("formErr");
+    var name = document.getElementById("fName").value.trim();
+    var email = document.getElementById("fEmail").value.trim();
+    var msg = "";
+    if (!name) msg = "Enter your full name so we know who to ask for.";
+    else if (!/^\S+@\S+\.\S+$/.test(email)) msg = "Enter an email address like name@example.com.";
+    else if (!document.getElementById("fConsent").checked) msg = "Tick the consent box so we can contact you.";
+    if (msg) { err.textContent = msg; err.hidden = false; return; }
+    err.hidden = true;
+    form.hidden = true;
+    document.getElementById("okText").textContent = "Thank you, " + name.split(" ")[0] + ". A patient coordinator will contact you at " + email + " within one working day.";
+    document.getElementById("formOk").hidden = false;
+  });
+
+  document.querySelectorAll(".copy").forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      var el = document.getElementById(btn.dataset.copy);
+      var done = function () { btn.textContent = "Copied"; setTimeout(function () { btn.textContent = "Copy"; }, 1500); };
+      var sel = function () { var r = document.createRange(); r.selectNodeContents(el); var s = getSelection(); s.removeAllRanges(); s.addRange(r); };
+      try { navigator.clipboard.writeText(el.textContent).then(done, sel); } catch (e) { sel(); }
+    });
+  });
+
+  document.getElementById("yr").textContent = new Date().getFullYear();
+})();
+</script>
