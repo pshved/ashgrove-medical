@@ -159,7 +159,7 @@ figure { margin: 0; }
 /* Surgeons */
 .team { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
 .surgeon { display: grid; gap: 14px; align-content: start; min-width: 0; }
-.plate { aspect-ratio: 4 / 5; max-width: 100%; border-radius: 4px; background: var(--sage-soft); display: grid; place-items: center; position: relative; overflow: hidden; }
+.plate { aspect-ratio: 1 / 1; max-width: 100%; border-radius: 4px; background: var(--sage-soft); display: grid; place-items: center; position: relative; overflow: hidden; }
 .plate span { font-family: var(--f-display); font-size: clamp(3.5rem, 9vw, 5.5rem); font-style: italic; color: var(--sage); }
 .plate img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
 .plate figcaption { position: absolute; left: 14px; right: 14px; bottom: 14px; z-index: 1; font-family: var(--f-mono); font-size: 0.6875rem; letter-spacing: 0.04em; color: #fff; background: rgba(20, 16, 31, 0.6); padding: 6px 8px; border-radius: 2px; }
@@ -452,23 +452,23 @@ form.card { background: var(--card); border: 1px solid var(--line); border-radiu
   </div>
   <div class="team">
     <article class="surgeon lead">
-      <figure class="plate"><img src="img/surgeon.jpg" alt="Dr. Paul Shved in a surgical cap, smiling" width="800" height="1000" loading="lazy"><figcaption>Photographed on call, 02:40</figcaption></figure>
+      <figure class="plate"><img src="img/shved.jpg" alt="Dr. Paul Shved in a surgical cap, smiling" width="900" height="900" loading="lazy"><figcaption>Photographed on call, 02:40</figcaption></figure>
       <span class="creds">MD, FACS · Founder &amp; Lead Surgeon</span>
       <h3>Dr. Paul Shved</h3>
       <p>Founded Ashgrove in 2012 and still operates four days a week, with a particular interest in male breast reduction and revision surgery. Holds the practice record of 211 consecutive symmetrical results and declines to discuss number 212. Takes on-call duty personally and reviews post-operative photographs from wherever he happens to be parked.</p>
       <div class="count"><span>Reductions performed</span><span>3,140</span></div>
     </article>
     <article class="surgeon">
-      <div class="plate" aria-hidden="true"><span>HV</span></div>
+      <figure class="plate"><img src="img/voss.jpg" alt="Dr. Helena Voss in a white coat at her desk" width="900" height="900" loading="lazy"></figure>
       <span class="creds">MD, FACS · Large-volume reduction</span>
       <h3>Dr. Helena Voss</h3>
       <p>Trained in plastic surgery at UCLA and in breast reconstruction in Gothenburg. Leads Ashgrove's work on very large reductions and free nipple graft technique. Can estimate tissue weight by eye to within 15 grams and has asked staff to stop calling it a party trick.</p>
       <div class="count"><span>Reductions performed</span><span>2,460</span></div>
     </article>
     <article class="surgeon">
-      <div class="plate" aria-hidden="true"><span>IS</span></div>
+      <figure class="plate"><img src="img/reed.jpg" alt="Dr. Jonathan Reed in a white coat at his desk" width="900" height="900" loading="lazy"></figure>
       <span class="creds">MD · Short-scar technique</span>
-      <h3>Dr. Ingvar Salo</h3>
+      <h3>Dr. Jonathan Reed</h3>
       <p>Focuses on short-scar vertical technique and reduction in younger patients, including counselling on future breastfeeding. Joined Ashgrove in 2021. Keeps a laboratory-calibrated kitchen scale in his office and will not say why.</p>
       <div class="count"><span>Reductions performed</span><span>870</span></div>
     </article>
@@ -592,7 +592,7 @@ form.card { background: var(--card); border: 1px solid var(--line); border-radiu
               <option>Not sure yet</option><option>Wise-pattern reduction</option><option>Vertical reduction</option><option>Liposuction-only reduction</option><option>Male breast reduction</option><option>Revision reduction</option>
             </select></div>
           <div class="field"><label for="fSurg">Preferred surgeon</label>
-            <select id="fSurg" name="surgeon"><option>No preference</option><option>Dr. Paul Shved</option><option>Dr. Helena Voss</option><option>Dr. Ingvar Salo</option></select></div>
+            <select id="fSurg" name="surgeon"><option>No preference</option><option>Dr. Paul Shved</option><option>Dr. Helena Voss</option><option>Dr. Jonathan Reed</option></select></div>
           <fieldset class="field full" style="border:0;padding:0;margin:0"><legend style="font-size:.875rem;font-weight:500;margin-bottom:6px">Paying by</legend>
             <div class="radio-row"><label><input type="radio" name="pay" id="payIns" value="Insurance" checked> Insurance</label><label><input type="radio" name="pay" id="paySelf" value="Self-pay"> Self-pay</label><label><input type="radio" name="pay" id="payUnsure" value="Unsure"> Not sure</label></div>
           </fieldset>
@@ -630,7 +630,7 @@ form.card { background: var(--card); border: 1px solid var(--line); border-radiu
       <nav aria-label="Footer"><a href="#procedures">Procedures</a><a href="#surgeons">Surgeons</a><a href="#recovery">Recovery</a></nav>
       <nav aria-label="Footer, more"><a href="#pricing">Insurance &amp; pricing</a><a href="#contact">Contact</a><a href="#home">Home</a></nav>
     </div>
-    <p class="disclaimer">© <span id="yr">2026</span> Ashgrove Reduction Surgery. Ashgrove is a fictional practice; its figures, address and patient stories are invented, and nothing on this site is medical advice.</p>
+    <p class="disclaimer">© <span id="yr">2026</span> Ashgrove Reduction Surgery. Ashgrove is a fictional practice; its figures, address and patient stories are invented, and its surgeon portraits are AI-generated, and nothing on this site is medical advice.</p>
   </div>
 </footer>
 
