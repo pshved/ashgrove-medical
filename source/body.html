@@ -137,6 +137,11 @@ figure { margin: 0; }
 .story figcaption span { color: var(--muted); font-size: 0.8125rem; }
 .surgeon.lead h3 { color: var(--marker); }
 
+/* Photographs */
+.photo { display: grid; gap: 10px; min-width: 0; }
+.photo img { display: block; width: 100%; height: auto; border-radius: 4px; }
+.photo figcaption { font-family: var(--f-mono); font-size: 0.75rem; color: var(--muted); letter-spacing: 0.03em; }
+
 /* Procedures */
 .scars { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
 .scars figure { background: var(--card); border: 1px solid var(--line); border-radius: 4px; padding: 16px; }
@@ -310,27 +315,9 @@ form.card { background: var(--card); border: 1px solid var(--line); border-radiu
         <li>Gynecomastia in men that has not resolved on its own</li>
       </ul>
     </div>
-    <figure class="illus">
-      <svg viewBox="0 0 400 280" role="img" aria-label="Line drawing of the Ashgrove consultation suite: tall window, armchair and a potted ash sapling">
-        <g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-          <line x1="10" y1="240" x2="390" y2="240"/>
-          <rect x="40" y="30" width="130" height="190" rx="65" ry="65"/>
-          <path d="M40 95h130M105 30v190M40 160h130"/>
-          <path d="M210 240v-22M330 240v-22"/>
-          <path d="M200 218h140c8 0 12-6 12-14v-36c0-8-6-12-12-12h-6v38H206v-38h-6c-6 0-12 4-12 12v36c0 8 4 14 12 14z"/>
-          <path d="M206 194v-58c0-12 8-20 20-20h88c12 0 20 8 20 20v58"/>
-          <path d="M360 240l-6-38h28l-6 38z"/>
-          <path d="M368 202V120"/>
-        </g>
-        <g fill="var(--sage)">
-          <ellipse cx="358" cy="130" rx="10" ry="4" transform="rotate(-30 358 130)"/><ellipse cx="378" cy="130" rx="10" ry="4" transform="rotate(30 378 130)"/>
-          <ellipse cx="356" cy="150" rx="11" ry="4" transform="rotate(-30 356 150)"/><ellipse cx="380" cy="150" rx="11" ry="4" transform="rotate(30 380 150)"/>
-          <ellipse cx="356" cy="170" rx="11" ry="4" transform="rotate(-30 356 170)"/><ellipse cx="380" cy="170" rx="11" ry="4" transform="rotate(30 380 170)"/>
-          <ellipse cx="368" cy="114" rx="4" ry="9"/>
-        </g>
-        <path d="M60 255h280" stroke="var(--marker)" stroke-width="2" stroke-dasharray="8 6" fill="none"/>
-      </svg>
-      <figcaption>Consultation suite 2 · Larkspur Avenue</figcaption>
+    <figure class="photo">
+      <img src="img/exterior.jpg" alt="The Ashgrove clinic storefront on Larkspur Avenue, with palm trees and glass doors" width="1400" height="1050" loading="lazy">
+      <figcaption>2140 Larkspur Avenue, Suite 120 · Free validated parking</figcaption>
     </figure>
   </div>
 
@@ -474,23 +461,9 @@ form.card { background: var(--card); border: 1px solid var(--line); border-radiu
     </article>
   </div>
   <div class="split">
-    <figure class="illus">
-      <svg viewBox="0 0 400 260" role="img" aria-label="Line drawing of the Ashgrove operating theatre: twin surgical lights over the table, with a patient monitor">
-        <g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-          <line x1="10" y1="236" x2="390" y2="236"/>
-          <path d="M160 0v34M160 34l-20 22M250 0v26M250 26l14 20"/>
-          <circle cx="132" cy="72" r="26"/><circle cx="132" cy="72" r="14"/>
-          <circle cx="270" cy="62" r="22"/><circle cx="270" cy="62" r="11"/>
-          <rect x="100" y="164" width="190" height="14" rx="3"/>
-          <path d="M170 178l-12 58h76l-12-58"/>
-          <path d="M330 236V132"/><rect x="306" y="96" width="56" height="38" rx="3"/>
-          <path d="M318 236h24"/>
-        </g>
-        <path d="M104 164c20-14 60-18 92-14s64 2 90 14z" fill="var(--sage)" opacity="0.55"/>
-        <path d="M312 118h10l4-10 6 18 5-12h19" fill="none" stroke="var(--marker)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-        <path d="M60 250h280" stroke="var(--marker)" stroke-width="2" stroke-dasharray="8 6" fill="none"/>
-      </svg>
-      <figcaption>Theatre 1 · Larkspur Avenue</figcaption>
+    <figure class="photo">
+      <img src="img/theatre.jpg" alt="Dr. Jonathan Reed in Theatre 1 holding a tape measure, with two nurses and the day's plan on a whiteboard" width="1400" height="1050" loading="lazy">
+      <figcaption>Theatre 1 · Dr. Reed's pre-operative briefing. Attendance is mandatory; the tape measure is his own.</figcaption>
     </figure>
     <div class="note"><b>Our theatre</b><p class="muted">Surgery takes place in Ashgrove's own operating suite, accredited by AAAASF and staffed by board-certified anaesthesiologists. Patients needing an overnight stay recover in one of four private rooms with continuous nursing.</p></div>
   </div>
@@ -605,7 +578,7 @@ form.card { background: var(--card); border: 1px solid var(--line); border-radiu
       <div class="success" id="formOk" hidden><b>Request received</b><p class="muted" id="okText"></p></div>
     </div>
     <div class="details">
-      <div><h3>Clinic</h3><address>Ashgrove Reduction Surgery<br>2140 Larkspur Avenue, Suite 300<br>Pasadena, CA 91101</address></div>
+      <div><h3>Clinic</h3><address>Ashgrove Reduction Surgery<br>2140 Larkspur Avenue, Suite 120<br>Pasadena, CA 91101</address></div>
       <div><h3>Patient coordinators</h3>
         <div class="copyline"><span class="mono" id="phoneTxt">(626) 555-0148</span><button class="copy" data-copy="phoneTxt" type="button">Copy</button></div>
         <div class="copyline"><span class="mono" id="mailTxt">consult@ashgrove.example</span><button class="copy" data-copy="mailTxt" type="button">Copy</button></div>
@@ -613,7 +586,8 @@ form.card { background: var(--card); border: 1px solid var(--line); border-radiu
       <div><h3>Hours</h3>
         <dl class="hours"><dt>Mon–Thu</dt><dd>08:00–17:30</dd><dt>Friday</dt><dd>08:00–15:00</dd><dt>Saturday</dt><dd>Post-op reviews only</dd><dt>Sunday</dt><dd>Closed</dd></dl>
       </div>
-      <div><h3>Getting here</h3><p class="muted">Two blocks from Lake station on the Metro A Line. Validated parking in the building garage on Larkspur Avenue.</p></div>
+      <div><h3>Getting here</h3><p class="muted">Two blocks from Lake station on the Metro A Line. Free parking right outside the door. We are the cream building between the med spa and the dermatologist, with our name on it in large letters.</p></div>
+      <figure class="photo"><img src="img/exterior.jpg" alt="The Ashgrove clinic storefront" width="1400" height="1050" loading="lazy"></figure>
     </div>
   </div>
 </section>
